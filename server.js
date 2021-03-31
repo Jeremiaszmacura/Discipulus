@@ -2,6 +2,10 @@ const express = require('express');
 const expressHandlebars = require('express-handlebars');
 const mongoose = require('mongoose');
 
+const homeRoutes =  require('./routes/homeRoutes');
+const testsRoutes =  require('./routes/testsRoutes');
+const aboutRoutes =  require('./routes/aboutRoutes');
+const dashboardRoutes =  require('./routes/dashboardRoutes');
 
 const app = express(); // create app
 
@@ -21,3 +25,13 @@ app.set('view engine', 'hbs');
 
 
 app.use(express.static('public')); // browser gets access to files in public directory
+
+
+// middleware
+app.use('/', homeRoutes);
+app.use('/tests', testsRoutes);
+app.use('/about', aboutRoutes);
+app.use('/dashboard', dashboardRoutes);
+app.use((req, res) => {
+    res.status(404).render('404', { pageTitle: '404'} );
+});
