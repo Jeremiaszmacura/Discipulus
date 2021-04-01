@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const expressHandlebars = require('express-handlebars');
 const mongoose = require('mongoose');
@@ -9,11 +10,11 @@ const dashboardRoutes =  require('./routes/dashboardRoutes');
 
 const app = express(); // create app
 
+const port = process.env.PORT || 3000;
 
 // connect to mongoDB
-const dbURL = 'mongodb+srv://jeremiasz:jeremiasz1234@discipuluscluster.dvdwf.mongodb.net/Discipulus?retryWrites=true&w=majority';
-mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then((result) => app.listen(3000)) // dopiero po połączenu z baza danych zaczynamy nasłuchiwanie
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then((result) => app.listen(port, () => console.log(`[SERVER] listening on port ${port}...`))) // dopiero po połączenu z baza danych zaczynamy nasłuchiwanie
     .catch((err) => console.log(err));
 
 
