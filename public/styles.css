@@ -5,23 +5,18 @@ p, h1, h2, h3, a, ul {
     color: #222;
 }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-}
-nav ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-}
-nav li {
-    list-style-type: none;
-    margin: 0 20px;
-}
-
 .site-title {
     margin-left: 10px;
+    text-shadow: 1px 1px #222;
+}
+
+.page-title {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+body {
+    margin: 0;
+    background-image: url("../public/img/background1920.jpg");
 }

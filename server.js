@@ -4,7 +4,7 @@ const expressHandlebars = require('express-handlebars');
 const mongoose = require('mongoose');
 
 const homeRoutes =  require('./routes/homeRoutes');
-const testsRoutes =  require('./routes/testsRoutes');
+const examsRoutes =  require('./routes/examsRoutes');
 const aboutRoutes =  require('./routes/aboutRoutes');
 const dashboardRoutes =  require('./routes/dashboardRoutes');
 
@@ -26,11 +26,12 @@ app.set('view engine', 'hbs');
 
 
 app.use(express.static('public')); // browser gets access to files in public directory
+app.use(express.urlencoded( { extended: true })); // bierze cały url encoded data i parsuje to do object, który możemy używać na request object (req.body)
 
 
 // middleware
 app.use('/', homeRoutes);
-app.use('/tests', testsRoutes);
+app.use('/exams', examsRoutes);
 app.use('/about', aboutRoutes);
 app.use('/dashboard', dashboardRoutes);
 app.use((req, res) => {

@@ -1,0 +1,19 @@
+{{> navigation}}
+
+
+<div class="page-title">
+    <h2>exams page</h2>
+</div>
+
+
+<div class="exams content">
+    {{#if exams.length}}
+        {{#each exams}}
+            <a class="single" href="/exams/{{_id}}">
+                <h3 class="title">{{name}}</h3>
+                <p>{{time}}</p>
+            </a>
+            <hr>
+        {{/each}}
+    {{/if}}
+</div>

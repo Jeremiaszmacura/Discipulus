@@ -1,3 +1,17 @@
 {{> navigation}}
 
-<h3>create page</h3>
+
+<div class="page-title">
+    <h2>create page</h2>
+</div>
+
+
+<div class="create-blog content">
+    <form action="/exams/create" method="POST">
+        <label for="name">Exam name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="time">Exam time:</label>
+        <input type="number" id="time" name="time" required>
+        <button>Submit</button>
+    </form>
+</div>
