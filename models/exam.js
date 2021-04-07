@@ -17,6 +17,10 @@ const ExamSchema = new Schema({
         type: Number,
         required: true,
     },
+    description: {
+        type: String,
+        required: true,
+    },
     tasks: [TaskSchema]
 }, { timestamps: true });
 

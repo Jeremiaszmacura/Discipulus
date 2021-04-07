@@ -1,5 +1,6 @@
 {{> navigation}}
 
+<link rel="stylesheet" href="/styles/exams.css">
 
 <div class="page-title">
     <h2>exams page</h2>
@@ -9,11 +10,13 @@
 <div class="exams content">
     {{#if exams.length}}
         {{#each exams}}
-            <a class="single" href="/exams/{{_id}}">
-                <h3 class="title">{{name}}</h3>
-                <p>{{time}}</p>
-            </a>
-            <hr>
+            <div class="exam-body">
+                <a class="single" href="/exams/{{_id}}">
+                    <h3 class="title">{{name}}</h3>
+                    <p>time: {{time}}</p>
+                    <p>description: {{description}}</p>
+                </a>
+            </div>
         {{/each}}
     {{/if}}
 </div>

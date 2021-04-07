@@ -6,7 +6,7 @@ p, h1, h2, h3, a, ul {
 }
 
 .site-title {
-    margin-left: 10px;
+    margin-left: 20px;
     text-shadow: 1px 1px #222;
 }
 
@@ -18,5 +18,7 @@ p, h1, h2, h3, a, ul {
 
 body {
     margin: 0;
-    background-image: url("../public/img/background1920.jpg");
+    background-image: url("../img/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }

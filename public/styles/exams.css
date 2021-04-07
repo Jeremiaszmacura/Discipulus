@@ -1,0 +1,18 @@
+.exams {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 15%;
+    grid-row-gap: 20%;
+    padding: 2em;
+    overflow: visible;
+    align-items: flex-start;
+}
+
+.exam-body {
+    text-align: center;
+    border: 1px solid gray;
+    height: 15vh;
+    background: white;
+    border-radius: 0.5em;
+    overflow: hidden;
+}
