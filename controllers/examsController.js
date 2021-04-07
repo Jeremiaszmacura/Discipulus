@@ -7,7 +7,6 @@ const exam_index = (req, res) => {
             if (result.length !== 0){
                 result.forEach(doc => tempArray.push(doc.toObject()));
             }
-            console.log(tempArray);
             res.render('exams', {pageTitle: "Exams", exams: tempArray });
         })
         .catch((err) => {
@@ -19,11 +18,19 @@ const exam_create = (req, res) => {
     res.render('create', { pageTitle: 'Create Exam'} );
 };
 
+const exam_details = (req, res) => {
+    const id = req.params.id; // wyciąga z zapytania :id i zapisuje w zmiennej id
+    Exam.findById(id)
+        .then(result => {
+            res.render('details', { exam: [result.name, result.time, result._id], pageTitle: 'Exam Details' })
+        })
+        .catch(err => {
+            res.status(404).render('404', { pageTitle: '404'} );
+        });
+};
+
 const exam_create_post = (req, res) => {
-    console.log(req.body);
     const exam = new Exam(req.body);
-
-
     exam.save()
         .then((result) => {
             res.redirect('/exams');
@@ -36,5 +43,6 @@ const exam_create_post = (req, res) => {
 module.exports = {
     exam_index,
     exam_create,
-    exam_create_post
+    exam_create_post,
+    exam_details
 };
