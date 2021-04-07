@@ -8,7 +8,7 @@ const exam_index = (req, res) => {
             if (result.length !== 0){
                 result.forEach(doc => tempArray.push(doc.toObject()));
             }
-            res.render('exams', {pageTitle: "Exams", exams: tempArray });
+            res.render('exams/exams', {pageTitle: "Exams", exams: tempArray });
         })
         .catch((err) => {
             console.log(err);
@@ -17,7 +17,7 @@ const exam_index = (req, res) => {
 
 
 const exam_create = (req, res) => {
-    res.render('create', { pageTitle: 'Create Exam'} );
+    res.render('exams/create', { pageTitle: 'Create Exam'} );
 };
 
 
@@ -26,7 +26,7 @@ const exam_details = (req, res) => {
 
     Exam.findById(id)
         .then(result => {
-            res.render('details', { exam: [result.name, result.time, result._id], pageTitle: 'Exam Details' })
+            res.render('exams/details', { exam: [result.name, result.time, result._id], pageTitle: 'Exam Details' })
         })
         .catch(err => {
             res.status(404).render('404', { pageTitle: '404'} );
