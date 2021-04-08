@@ -12,11 +12,6 @@ const app = express(); // create app
 
 const port = process.env.PORT || 3000;
 
-// connect to mongoDB
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then((result) => app.listen(port, () => console.log(`[SERVER] listening on port ${port}...`))) // dopiero po połączenu z baza danych zaczynamy nasłuchiwanie
-    .catch((err) => console.log(err));
-
 
 app.engine('hbs', expressHandlebars({
     defaultLayout: 'main',
@@ -37,3 +32,12 @@ app.use('/dashboard', dashboardRoutes);
 app.use((req, res) => {
     res.status(404).render('404', { pageTitle: '404'} );
 });
+
+
+if(require.main === module) {
+    mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+        .then((result) => app.listen(port, () => console.log(`[SERVER] listening on port ${port}...`))) // dopiero po połączenu z baza danych zaczynamy nasłuchiwanie
+        .catch((err) => console.log(err));
+} else {
+    module.exports = app
+}
