@@ -2,11 +2,14 @@ require('dotenv').config();
 const express = require('express');
 const expressHandlebars = require('express-handlebars');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 
 const homeRoutes =  require('./routes/homeRoutes');
 const examsRoutes =  require('./routes/examsRoutes');
 const aboutRoutes =  require('./routes/aboutRoutes');
 const dashboardRoutes =  require('./routes/dashboardRoutes');
+
+const { credentials } = require('./config');
 
 const app = express(); // create app
 
@@ -22,6 +25,7 @@ app.set('view engine', 'hbs');
 
 app.use(express.static('public')); // browser gets access to files in public directory
 app.use(express.urlencoded( { extended: true })); // bierze cały url encoded data i parsuje to do object, który możemy używać na request object (req.body)
+app.use(cookieParser(credentials.cookieSecret));
 
 
 // middleware

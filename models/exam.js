@@ -8,6 +8,12 @@ const TaskSchema = new Schema({
     answer: String
 }, { timestamps: true });
 
+const AnswerSchema = new Schema({
+    name: String,
+    idNumber: Number,
+    answer: String
+}, { timestamps: true });
+
 const ExamSchema = new Schema({
     name: {
         type: String,
@@ -21,7 +27,8 @@ const ExamSchema = new Schema({
         type: String,
         required: true,
     },
-    tasks: [TaskSchema]
+    tasks: [TaskSchema],
+    answers: [AnswerSchema]
 }, { timestamps: true });
 
 
