@@ -16,3 +16,24 @@
     border-radius: 0.5em;
     overflow: hidden;
 }
+
+.create-exam {
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2em;
+    width: 25vw;
+    height: 40vh;
+    background: #FFFFFF 0 0 no-repeat padding-box;
+    border: 1px solid #707070;
+    border-radius: 32px;
+}

@@ -16,9 +16,32 @@ p, h1, h2, h3, a, ul {
     margin-bottom: 10px;
 }
 
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flax-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 body {
     margin: 0;
     background-image: url("../img/background.png");
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+button {
+    background: #fff1d5;
+    letter-spacing: 0.1em;
+    border: 2px solid #707070;
+    border-radius: 1em;
+    padding: 0.5em 1em;
+    width: 30%;
+}
+
+.title {
+    font-size: 2em;
+    padding-bottom: 0.5em;
 }

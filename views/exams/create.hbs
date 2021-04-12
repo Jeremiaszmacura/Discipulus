@@ -1,13 +1,12 @@
 {{> navigation}}
 
-
-<div class="page-title">
-    <h2>create page</h2>
-</div>
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/exams.css">
 
 
 <div class="create-exam content">
     <form action="/exams/create" method="POST">
+        <p class="title">Create Exam</p>
         <label for="name">Exam name:</label>
         <input type="text" id="name" name="name" required>
         <label for="time">Exam time:</label>
