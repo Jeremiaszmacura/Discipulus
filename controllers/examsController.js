@@ -2,7 +2,7 @@ const Exam = require('../models/exam');
 
 
 const exam_index = (req, res) => {
-    Exam.find().sort({ createdAt: -1 })
+    Exam.find().select('__id name time description tasks').sort({ createdAt: -1 })
         .then((result) => {
             const tempArray = [];
             if (result.length !== 0){
@@ -17,7 +17,7 @@ const exam_index = (req, res) => {
 
 
 const exam_create = (req, res) => {
-    res.render('exams/create', { pageTitle: 'Create Exam'} );
+    res.status(200).render('exams/create', { pageTitle: 'Create Exam'} );
 };
 
 
@@ -39,10 +39,11 @@ const exam_create_post = (req, res) => {
 
     exam.save()
         .then((result) => {
-            res.redirect('/exams');
+            res.status(201).redirect('/exams');
         })
         .catch((err) => {
             console.log(err);
+            res.status(500).redirect('500');
         });
 };
 
@@ -52,10 +53,11 @@ const exam_delete = (req, res) => {
 
     Exam.findByIdAndDelete(id)
         .then(result => {
-            res.json({ redirect: '/exams' });
+            res.status(200).json({ redirect: '/exams' });
         })
         .catch(err => {
             console.log(err);
+            res.status(500).redirect('500');
         });
 };
 

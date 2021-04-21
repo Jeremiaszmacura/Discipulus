@@ -37,9 +37,13 @@ app.use('/register', registerRoutes);
 app.use('/exams', examsRoutes);
 app.use('/about', aboutRoutes);
 app.use('/dashboard', dashboardRoutes);
-app.use((req, res) => {
+app.use((req, res, next) => {
     res.status(404).render('404', { pageTitle: '404'} );
 });
+// app.use(function (err, req, res, next) {
+//     console.log(err);
+//     res.status(500).send('Something broke!');
+// });
 
 
 if(require.main === module) {

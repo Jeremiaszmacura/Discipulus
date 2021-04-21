@@ -45,3 +45,10 @@ button {
     font-size: 2em;
     padding-bottom: 0.5em;
 }
+
+.no-valid {
+    border: 3px solid red;
+    border-radius: 1em;
+    box-shadow: 0 0 0.2em red;
+    outline: none;
+}
