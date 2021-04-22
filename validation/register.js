@@ -40,7 +40,7 @@ register_validation = [
     (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(422).render('register', { error: JSON.stringify(errors) });
+        return res.status(422).render('users/register', { error: JSON.stringify(errors) });
     }
     else next();
 }

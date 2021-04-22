@@ -8,8 +8,7 @@ const homeRoutes =  require('./routes/homeRoutes');
 const examsRoutes =  require('./routes/examsRoutes');
 const aboutRoutes =  require('./routes/aboutRoutes');
 const dashboardRoutes =  require('./routes/dashboardRoutes');
-const loginRoutes = require('./routes/loginRoutes');
-const registerRoutes = require('./routes/registerRoutes');
+const usersRoutes = require('./routes/usersRoutes');
 
 const { credentials } = require('./config');
 
@@ -32,8 +31,7 @@ app.use(cookieParser(credentials.cookieSecret));
 
 // middleware
 app.use('/', homeRoutes);
-app.use('/login', loginRoutes);
-app.use('/register', registerRoutes);
+app.use('/users', usersRoutes);
 app.use('/exams', examsRoutes);
 app.use('/about', aboutRoutes);
 app.use('/dashboard', dashboardRoutes);
