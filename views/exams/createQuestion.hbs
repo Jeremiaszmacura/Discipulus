@@ -1,0 +1,42 @@
+{{> navigation}}
+
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/exams.css">
+
+<div class="create-exam content">
+    <form action="/exams/createQuestion" method="POST">
+
+        <p class="title">Create Question</p>
+        <label for="question-content">Question:</label>
+        <textarea id="question-content" name="question-content" required></textarea>
+
+        <p>Answers:</p>
+
+        <div class="answers-create">
+
+            <div class="answer-create-question">
+                <label class="answer-variant" for="question-answer-A">Answer A</label>
+                <textarea class="text-area-create-answer" id="question-answer-A" name="question-answer" required></textarea>
+            </div>
+
+            <div class="answer-create-question">
+                <label class="answer-variant" for="question-answer-B">Answer B</label>
+                <textarea class="text-area-create-answer" id="question-answer-B" name="question-answer" required></textarea>
+            </div>
+
+            <div class="answer-create-question">
+                <label class="answer-variant" for="question-answer-C">Answer C</label>
+                <textarea class="text-area-create-answer" id="question-answer-C" name="question-answer" required></textarea>
+            </div>
+
+            <div class="answer-create-question">
+                <label class="answer-variant" for="question-answer-D">Answer D</label>
+                <textarea class="text-area-create-answer" id="question-answer-D" name="question-answer" required></textarea>
+            </div>
+
+        </div>
+
+        <button>Submit</button>
+
+    </form>
+</div>

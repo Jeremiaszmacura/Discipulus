@@ -1,4 +1,4 @@
-console.log("hi1");
+console.log("delete");
 const trashcan = document.querySelector('a.delete');
 trashcan.addEventListener('click', (e) => {
     console.log("hi");

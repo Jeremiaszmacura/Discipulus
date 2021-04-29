@@ -4,11 +4,8 @@ const Exam = require('../models/exam');
 const exam_index = (req, res) => {
     Exam.find().select('__id name time description tasks').sort({ createdAt: -1 })
         .then((result) => {
-            const tempArray = [];
-            if (result.length !== 0){
-                result.forEach(doc => tempArray.push(doc.toObject()));
-            }
-            res.render('exams/exams', {pageTitle: "Exams", exams: tempArray });
+            const docObjects = result.map(doc => doc.toObject());
+            res.render('exams/exams', {pageTitle: "Exams", exams: docObjects });
         })
         .catch((err) => {
             console.log(err);
@@ -39,7 +36,7 @@ const exam_create_post = (req, res) => {
 
     exam.save()
         .then((result) => {
-            res.status(201).redirect('/exams');
+            res.render('exams/details', { exam: [result.name, result.time, result._id], pageTitle: 'Exam Details' });
         })
         .catch((err) => {
             console.log(err);
@@ -62,10 +59,16 @@ const exam_delete = (req, res) => {
 };
 
 
+const question_create = (req, res) => {
+    res.status(200).render('exams/createQuestion', { pageTitle: 'Create Question'} );
+};
+
+
 module.exports = {
     exam_index,
     exam_create,
     exam_create_post,
     exam_details,
-    exam_delete
+    exam_delete,
+    question_create
 };

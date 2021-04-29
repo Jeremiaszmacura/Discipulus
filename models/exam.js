@@ -2,16 +2,17 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-const TaskSchema = new Schema({
+const AnswerSchema = new Schema({
     idNumber: Number,
-    question: String,
+    name: String,
+    isCorrect: Boolean,
     answer: String
 }, { timestamps: true });
 
-const AnswerSchema = new Schema({
-    name: String,
+const TaskSchema = new Schema({
     idNumber: Number,
-    answer: String
+    question: String,
+    answers: [AnswerSchema]
 }, { timestamps: true });
 
 const ExamSchema = new Schema({
@@ -27,8 +28,7 @@ const ExamSchema = new Schema({
         type: String,
         required: true,
     },
-    tasks: [TaskSchema],
-    answers: [AnswerSchema]
+    tasks: [TaskSchema]
 }, { timestamps: true });
 
 

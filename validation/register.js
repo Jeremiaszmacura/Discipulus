@@ -38,11 +38,17 @@ register_validation = [
         .custom((value, { req }) => value === req.body.password),
 
     (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(422).render('users/register', { error: JSON.stringify(errors) });
+    const result = validationResult(req);
+    result.errors.map((error, index) => {
+        result.errors[index] = {
+            msg: error.msg
+        }
+    });
+        console.log({ error: JSON.stringify(result.errors) });
+    if (!result.isEmpty()) {
+        return res.status(422).render('users/register', { error: result.errors });
     }
-    else next();
+    next();
 }
 ];
 
