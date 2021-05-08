@@ -31,8 +31,8 @@ form {
     justify-content: space-around;
     align-items: center;
     padding: 2em;
-    width: 25vw;
-    height: 50vh;
+    width: 30vw;
+    height: 60vh;
     background: #FFFFFF 0 0 no-repeat padding-box;
     border: 1px solid #707070;
     border-radius: 32px;
@@ -53,6 +53,28 @@ form {
 #question-content {
     width: 90%;
     height: 15%;
+}
+
+.create-exam > form > input, textarea {
+    border: 2px solid #707070;
+    border-radius: 0.2em;
+}
+
+.create-exam > form > input {
+    font-size: 1.2em;
+}
+
+.create-exam #name {
+    width: 80%;
+}
+
+.create-exam #time {
+    width: 30%;
+}
+
+.create-exam > form > textarea {
+    width: 90%;
+    height: 7em;
 }
 
 
