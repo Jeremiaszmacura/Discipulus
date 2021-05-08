@@ -27,7 +27,8 @@ app.set('view engine', 'hbs');
 app.use(express.static('public')); // browser gets access to files in public directory
 app.use(express.urlencoded( { extended: true })); // bierze cały url encoded data i parsuje to do object, który możemy używać na request object (req.body)
 app.use(express.json()); // all data send to api will be able to access as a json
-app.use(cookieParser(credentials.cookieSecret));
+app.use(cookieParser(credentials.cookieSecret)); // cookie
+
 
 // middleware
 app.use('/', homeRoutes);
@@ -35,13 +36,13 @@ app.use('/users', usersRoutes);
 app.use('/exams', examsRoutes);
 app.use('/about', aboutRoutes);
 app.use('/dashboard', dashboardRoutes);
-app.use((req, res, next) => {
+app.use((req, res) => {
     res.status(404).render('404', { pageTitle: '404'} );
 });
-// app.use(function (err, req, res, next) {
-//     console.log(err);
-//     res.status(500).send('Something broke!');
-// });
+app.use(function (err, req, res) {
+    console.log(err);
+    res.status(500).render('500');
+});
 
 
 if(require.main === module) {
