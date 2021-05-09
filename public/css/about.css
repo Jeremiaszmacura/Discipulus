@@ -1,0 +1,30 @@
+.about-body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 5%;
+    grid-row-gap: 5%;
+    padding: 3% 5%;
+    overflow: visible;
+    align-items: flex-start;
+}
+
+.about-container {
+    text-align: center;
+    border: 2px solid gray;
+    height: auto;
+    background: white;
+    border-radius: 0.5em;
+    overflow: hidden;
+}
+
+.about-title {
+    padding: 0.5em;
+    font-size: 1.8em;
+    font-family: 'Itim', cursive;
+}
+
+.about-description {
+    padding: 0.5em 2em;
+    font-size: 1.2em;
+    font-family: 'Itim', cursive;
+}

@@ -13,10 +13,17 @@ form.login {
     background: #FFFFFF 0 0 no-repeat padding-box;
     border: 1px solid #707070;
     border-radius: 32px;
+    font-family: 'Itim', cursive;
 }
 
 p {
     font-size: 1.2em;
+}
+
+.login-button {
+    font-size: 1.2em;
+    padding: 0.2em 1em;
+    letter-spacing: 0;
 }
 
 .login-container {
@@ -33,4 +40,6 @@ input {
     border-radius: 1em;
     padding: 0.5em 1em;
     width: 60%;
+    font-size: 1em;
+    font-family: 'Itim', cursive;
 }

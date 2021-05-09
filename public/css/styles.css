@@ -1,3 +1,6 @@
+@import url("https://fonts.gstatic.com");
+@import "https://fonts.googleapis.com/css2?family=Itim&display=swap";
+
 p, h1, h2, h3, a, ul {
     margin: 0;
     padding: 0;
@@ -39,17 +42,19 @@ button {
     border-radius: 1em;
     padding: 0.5em 1em;
     width: 30%;
+    font-family: 'Itim', cursive;
 }
 
 .register-link {
     background: #fff6e0;
     border: 2px solid #707070;
     border-radius: 1em;
-    padding: 0.5em 1em;
+    padding: 0.2em 1em;
+    font-family: 'Itim', cursive;
 }
 
 .title {
-    font-size: 2em;
+    font-size: 2.2em;
     padding-bottom: 0.5em;
 }
 
@@ -83,3 +88,4 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+

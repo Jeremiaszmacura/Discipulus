@@ -11,6 +11,7 @@ input {
     margin: 0 auto;
     width: 40%;
     font-size: 1.5em;
+    font-family: 'Itim', cursive;
 }
 
 .discipulus-description > p {
@@ -18,10 +19,12 @@ input {
     padding: 6% 20%;
     text-align: center;
     font-weight: bold;
+    font-family: 'Itim', cursive;
 }
 
 .page-title > h1 {
     font-size: 3em;
+    font-family: 'Itim', cursive;
 }
 
 
