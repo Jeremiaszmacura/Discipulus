@@ -1,15 +1,16 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
+const uniqueString = require('unique-string');
 
 
-const register_index = (req, res) => {
+const registerIndex = (req, res) => {
     res.render('users/register', { pageTitle: 'Register'} );
 };
 
-const register_post = async (req, res) => {
+const registerPost = async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, 10); // second param is salt
 
-    const user = new User( { email: req.body.email, password: hashedPassword } );
+    const user = new User( { email: req.body.email, password: hashedPassword, authToken: uniqueString() } );
 
     user.save()
         .then((result) => {
@@ -21,12 +22,12 @@ const register_post = async (req, res) => {
         });
 };
 
-const login_index = (req, res) => {
+const loginIndex = (req, res) => {
     res.render('users/login', { pageTitle: 'Login'} );
 };
 
-const login_post = async (req, res) => {
-    const user = User.findOne({ email: req.body.email }, (error, data) => {
+const loginPost = async (req, res) => {
+    User.findOne({ email: req.body.email }, (error, data) => {
         if(error) {
             console.log(error);
         }
@@ -38,6 +39,7 @@ const login_post = async (req, res) => {
                 return res.status(500).render('500');
             }
             if (result) {
+                res.cookie('authentication', data.authToken, { maxAge: 1000 * 60 * 60 * 12 });
                 return res.status(201).redirect('/');
             }
             res.render('users/login', { error: "Invalid password" });
@@ -47,8 +49,8 @@ const login_post = async (req, res) => {
 
 
 module.exports = {
-    register_index,
-    register_post,
-    login_index,
-    login_post
+    registerIndex,
+    registerPost,
+    loginIndex,
+    loginPost
 };

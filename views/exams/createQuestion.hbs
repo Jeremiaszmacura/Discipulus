@@ -4,34 +4,45 @@
 <link rel="stylesheet" href="/css/exams.css">
 
 <div class="create-exam content">
-    <form action="/exams/createQuestion" method="POST">
+    <form action="/exams/createQuestion/{{questionId}}" method="POST">
 
         <p class="title">Create Question</p>
         <label for="question-content">Question:</label>
-        <textarea id="question-content" name="question-content" required></textarea>
+        <textarea id="question-content" name="question" required></textarea>
 
         <p>Answers:</p>
 
         <div class="answers-create">
 
             <div class="answer-create-question">
-                <label class="answer-variant" for="question-answer-A">Answer A</label>
-                <textarea class="text-area-create-answer" id="question-answer-A" name="question-answer" required></textarea>
+                <label class="answer-variant" for="questionAnswerA">Answer A</label>
+                <textarea class="text-area-create-answer" id="questionAnswerA" name="questionAnswerA" required></textarea>
             </div>
 
             <div class="answer-create-question">
-                <label class="answer-variant" for="question-answer-B">Answer B</label>
-                <textarea class="text-area-create-answer" id="question-answer-B" name="question-answer" required></textarea>
+                <label class="answer-variant" for="questionAnswerB">Answer B</label>
+                <textarea class="text-area-create-answer" id="questionAnswerB" name="questionAnswerB" required></textarea>
             </div>
 
             <div class="answer-create-question">
-                <label class="answer-variant" for="question-answer-C">Answer C</label>
-                <textarea class="text-area-create-answer" id="question-answer-C" name="question-answer" required></textarea>
+                <label class="answer-variant" for="questionAnswerC">Answer C</label>
+                <textarea class="text-area-create-answer" id="questionAnswerC" name="questionAnswerC" required></textarea>
             </div>
 
             <div class="answer-create-question">
-                <label class="answer-variant" for="question-answer-D">Answer D</label>
-                <textarea class="text-area-create-answer" id="question-answer-D" name="question-answer" required></textarea>
+                <label class="answer-variant" for="questionAnswerD">Answer D</label>
+                <textarea class="text-area-create-answer" id="questionAnswerD" name="questionAnswerD" required></textarea>
+            </div>
+
+            <div class="select-correct-answer">
+                <input type="radio" id="correctAnswer" name="correctAnswer" value="A">
+                <label class="correct-answer" for="correctAnswer">Answer A</label>
+                <input type="radio" id="correctAnswer" name="correctAnswer" value="B">
+                <label class="correct-answer" for="correctAnswer">Answer B</label>
+                <input type="radio" id="correctAnswer" name="correctAnswer" value="C">
+                <label class="correct-answer" for="correctAnswer">Answer C</label>
+                <input type="radio" id="correctAnswer" name="correctAnswer" value="D">
+                <label class="correct-answer" for="correctAnswer">Answer D</label>
             </div>
 
         </div>

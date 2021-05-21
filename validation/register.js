@@ -44,7 +44,9 @@ register_validation = [
             msg: error.msg
         }
     });
+    if(result.errors.length) {
         console.log({ error: JSON.stringify(result.errors) });
+    }
     if (!result.isEmpty()) {
         return res.status(422).render('users/register', { error: result.errors });
     }

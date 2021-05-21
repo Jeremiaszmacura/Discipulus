@@ -14,6 +14,10 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
+    authToken: {
+        type: String,
+        unique: true
+    },
     ownedExams: [{
         type: Schema.Types.ObjectId,
         ref: 'Exam'

@@ -1,8 +1,8 @@
-const about_index = (req, res) => {
+const aboutIndex = (req, res) => {
     res.render('about', { pageTitle: 'About'} );
 };
 
 
 module.exports = {
-    about_index
+    aboutIndex
 };

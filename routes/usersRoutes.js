@@ -4,10 +4,10 @@ const validate = require('../validation/register');
 
 const router = express.Router();
 
-router.get('/register', usersController.register_index);
-router.post('/register', validate.register_validation, usersController.register_post);
-router.get('/login', usersController.login_index);
-router.post('/login', usersController.login_post);
+router.get('/register', usersController.registerIndex);
+router.post('/register', validate.register_validation, usersController.registerPost);
+router.get('/login', usersController.loginIndex);
+router.post('/login', usersController.loginPost);
 
 
 module.exports = router;
