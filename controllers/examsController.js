@@ -51,7 +51,10 @@ const examCreatePost = async (req, res) => {
 const examDelete = async (req, res) => {
     const id = req.params.id;
 
-    const exam = examModel.Exam.findById(id);
+    examModel.Exam.findById(id).then((result) => {
+        console.log(result);
+        User.updateOne({ _id: res.locals.user._id }, { $pullAll: { ownedExams: [result._id]} }).exec();
+    })
 
     // await User.find( { ownedExams: id } ).then((result) => {
     //     console.log(result);
@@ -61,7 +64,6 @@ const examDelete = async (req, res) => {
     // })
 
     // TODO
-    await User.updateOne({ _id: res.locals.user._id }, { $pullAll: { ownedExams: [exam._id]} }).exec();
 
     examModel.Exam.findByIdAndDelete(id)
         .then(result => {
@@ -80,22 +82,18 @@ const questionCreate = (req, res) => {
 
 
 const questionCreatePost = async (req, res) => {
-    const id = req.params.id; // takes from request value of field id and saves in id variable
-    console.log(req.body);
-
-    const task = new examModel.Task(req.body);
-
-    await examModel.Exam.updateOne({ _id: id }, { $push: { tasks: task} });
-
-    // task.save()
-    //     .then((result) => {
-    //         res.render('exams/details', { exam: [result.name, result.time, result._id], pageTitle: 'Exam Details' });
-    //     })
-    //     .catch((err) => {
-    //         console.log(err);
-    //         res.status(500).redirect('500');
-    //     });
-};
+    examModel.Exam.updateOne({ _id: req.params.id }, { $push: { tasks: new examModel.Task(req.body)} })
+    .then((result) => {
+        examModel.Exam.findById(req.params.id)
+            .then((result2) => {
+                res.render('exams/details', { exam: [result2.name, result2.time, result2._id], pageTitle: 'Exam Details' })
+            })
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).redirect('500');
+    });
+}
 
 
 module.exports = {
