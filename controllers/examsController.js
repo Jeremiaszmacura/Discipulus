@@ -49,23 +49,31 @@ const examCreatePost = async (req, res) => {
 
 
 const examDelete = async (req, res) => {
-    const id = req.params.id;
+    const id = req.params.id; // take id of exam from URL
+    let isExamOwner = 1; // flag to check if user is owner of exam
 
-    examModel.Exam.findById(id).then((result) => {
-        console.log(result);
+    // checks if user who wants to delete exam is owner of this exam
+    await User.findOne( { _id: res.locals.user._id } ).then((result) => {
+        if (!result.ownedExams.includes(id)) {
+            isExamOwner = 0;
+        }
+    }).catch(err => {
+        console.log(err);
+        res.status(500).redirect('500');
+    });
+
+    if (!isExamOwner) return res.status(200).json({ redirect: '/users/login' });
+
+    // delete exam id from user ownedExam list
+    await examModel.Exam.findById(id).then((result) => {
         User.updateOne({ _id: res.locals.user._id }, { $pullAll: { ownedExams: [result._id]} }).exec();
-    })
+    }).catch(err => {
+        console.log(err);
+        res.status(500).redirect('500');
+    });
 
-    // await User.find( { ownedExams: id } ).then((result) => {
-    //     console.log(result);
-    //     if(!result._id === res.locals.user._id) {
-    //         res.status(422).render('users/login', { error: "You are not an owner of this exam!" });
-    //     }
-    // })
-
-    // TODO
-
-    examModel.Exam.findByIdAndDelete(id)
+    // delete exam
+    await examModel.Exam.findByIdAndDelete(id)
         .then(result => {
             res.status(200).json({ redirect: '/exams' });
         })
