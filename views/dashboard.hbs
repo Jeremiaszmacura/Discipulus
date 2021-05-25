@@ -1,25 +1,37 @@
 {{> navigation}}
+
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/dashboard.css">
+
+
 <!--pageTitle: 'Dashboard',-->
 <!--userEmail: res.locals.user.email,-->
 <!--userExams: res.locals.user.ownedExams-->
 
-<div class="page-title">
-    <h1>User: {{{userEmail}}}</h1>
-    <div class="owned-exams">
-        <h3>Owned exams:</h3>
-        {{#if userExams.length}}
-            {{#each userExams}}
-                <div class="exam-dashboard">
-                    <a class="single" href="/exams/{{_id}}">
-                        <br>
-                        <h3>{{name}}</h3>
-                        <p>time: {{time}}</p>
-                        <p>description: {{description}}</p>
-                    </a>
-                </div>
-            {{/each}}
-        {{/if}}
+
+
+<div class="dashboard-body">
+    <div class="dashboard-container">
+        <p class="dashboard-title">User Details</p>
+        <div class="dashboard-container-body">
+            <p>Email:</p>
+            <p>{{{userEmail}}}</p>
+        </div>
     </div>
-
-
+    <div class="dashboard-container">
+        <p class="dashboard-title">Owned Exams</p>
+        <div class="dashboard-container-body">
+            {{#if userExams.length}}
+                {{#each userExams}}
+                    <div class="dashboard-exam">
+                        <a class="single" href="/exams/{{_id}}">
+                            <h3>{{name}}</h3>
+                            <p>time: {{time}}</p>
+                            <p>description: {{description}}</p>
+                        </a>
+                    </div>
+                {{/each}}
+            {{/if}}
+        </div>
+    </div>
 </div>
