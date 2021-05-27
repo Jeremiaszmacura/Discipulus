@@ -22,9 +22,9 @@ const examCreate = (req, res) => {
 const examDetails = (req, res) => {
     const id = req.params.id; // takes from request value of field id and saves in id variable
 
-    examModel.Exam.findById(id)
+    examModel.Exam.findById(id).lean()
         .then(result => {
-            res.render('exams/details', { exam: [result.name, result.time, result._id], pageTitle: 'Exam Details' })
+            res.render('exams/details', { exam: [result.name, result.time, result._id], questions: result.tasks, pageTitle: 'Exam Details' })
         })
         .catch(err => {
             res.status(404).render('404', { pageTitle: '404'} );
