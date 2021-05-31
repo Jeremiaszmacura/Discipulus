@@ -1,7 +1,7 @@
 .exams {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 15%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 5%;
     grid-row-gap: 20%;
     padding: 2em;
     overflow: visible;
