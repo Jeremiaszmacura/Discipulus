@@ -10,6 +10,7 @@ const examIndex = (req, res) => {
         })
         .catch((err) => {
             console.log(err);
+            res.status(500).redirect('500', { pageTitle: 'About'} );
         });
 };
 
@@ -26,8 +27,9 @@ const examDetails = (req, res) => {
         .then(result => {
             res.render('exams/details', { exam: [result.name, result.time, result._id], questions: result.tasks, pageTitle: 'Exam Details' })
         })
-        .catch(err => {
-            res.status(404).render('404', { pageTitle: '404'} );
+        .catch((err) => {
+            console.log(err);
+            res.status(500).redirect('500', { pageTitle: 'About'} );
         });
 };
 
@@ -43,7 +45,7 @@ const examCreatePost = async (req, res) => {
         })
         .catch((err) => {
             console.log(err);
-            res.status(500).redirect('500');
+            res.status(500).redirect('500', { pageTitle: 'About'} );
         });
 };
 
@@ -59,7 +61,7 @@ const examDelete = async (req, res) => {
         }
     }).catch(err => {
         console.log(err);
-        res.status(500).redirect('500');
+        res.status(500).json({ redirect: '500' });
     });
 
     if (!isExamOwner) return res.status(200).json({ redirect: '/users/login' });
@@ -69,17 +71,17 @@ const examDelete = async (req, res) => {
         User.updateOne({ _id: res.locals.user._id }, { $pullAll: { ownedExams: [result._id]} }).exec();
     }).catch(err => {
         console.log(err);
-        res.status(500).redirect('500');
+        res.status(500).json({ redirect: '500' });
     });
 
     // delete exam
     await examModel.Exam.findByIdAndDelete(id)
-        .then(result => {
+        .then(() => {
             res.status(200).json({ redirect: '/exams' });
         })
         .catch(err => {
             console.log(err);
-            res.status(500).redirect('500');
+            res.status(500).json({ redirect: '500' });
         });
 };
 
@@ -90,18 +92,51 @@ const questionCreate = (req, res) => {
 
 
 const questionCreatePost = async (req, res) => {
-    examModel.Exam.updateOne({ _id: req.params.id }, { $push: { tasks: new examModel.Task(req.body)} })
-    .then((result) => {
-        examModel.Exam.findById(req.params.id)
+    await examModel.Exam.updateOne({ _id: req.params.id }, { $push: { tasks: new examModel.Task(req.body)} })
+    .then(() => {
+        examModel.Exam.findById(req.params.id).lean()
             .then((result2) => {
-                res.render('exams/details', { exam: [result2.name, result2.time, result2._id], pageTitle: 'Exam Details' })
+                res.render('exams/details', { exam: [result2.name, result2.time, result2._id],
+                    questions: result2.tasks, pageTitle: 'Exam Details' })
             })
     })
     .catch((err) => {
         console.log(err);
-        res.status(500).redirect('500');
+        res.status(500).redirect('500', { pageTitle: 'About'} );
     });
-}
+};
+
+
+const questionDelete = async (req, res) => {
+    const id = req.params.id; // take id of exam from URL
+    let isExamOwner = 1; // flag to check if user is owner of exam
+
+    await examModel.Exam.find()
+        .then((users) => users.forEach((exam) => {
+            exam.tasks.forEach((task) => {
+                if(id === task.id) {
+                    res.locals.exam_id = exam._id
+                }
+            });
+        }));
+
+    // checks if user who wants to delete exam is owner of this exam
+    await User.findOne( { _id: res.locals.user._id } ).then((result) => {
+        if (!result.ownedExams.includes(res.locals.exam_id)) {
+            isExamOwner = 0;
+        }
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json({ redirect: '500' });
+    });
+
+    if (!isExamOwner) return res.status(200).json({ redirect: '/users/login' });
+
+    await examModel.Exam.updateOne( {_id: res.locals.exam_id}, { $pull: { tasks: { _id: req.params.id} } } )
+        .then(() => {
+            res.status(200).json({ redirect: req.get('referer') });
+        });
+};
 
 
 module.exports = {
@@ -111,5 +146,6 @@ module.exports = {
     examDetails,
     examDelete,
     questionCreate,
-    questionCreatePost
+    questionCreatePost,
+    questionDelete
 };

@@ -24,6 +24,7 @@ app.engine('hbs', expressHandlebars({
 app.set('view engine', 'hbs');
 
 
+
 app.use(express.static('public')); // browser gets access to files in public directory
 app.use(express.urlencoded( { extended: true })); // takes all url encoded data and parse to object, which we can use in request object (req.body)
 app.use(express.json()); // all data send to api will be able to access as a json
@@ -48,8 +49,10 @@ app.use(function (err, req, res) {
 if(require.main === module) {
     mongoose.connect(process.env.DATABASE_URL,
         { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
-        .then((result) => app.listen(port, () => console.log(`[SERVER] listening on port ${port}...`))) // after successful connection with database, sever start listening
+        .then(() => app.listen(port, () => console.log(`[SERVER] listening on port ${port}...`))) // after successful connection with database, sever start listening
         .catch((err) => console.log(err));
-} else {
-    module.exports = app
 }
+
+
+module.exports = app
+

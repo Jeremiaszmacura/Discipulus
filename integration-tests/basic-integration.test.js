@@ -25,4 +25,4 @@ test('Home page allows to redirect to about page.', async () => {
     ])
     expect(page.url()).toBe(`http://localhost:${port}/about`)
     await browser.close()
-})
+});

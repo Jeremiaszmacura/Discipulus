@@ -7,6 +7,7 @@ const registerIndex = (req, res) => {
     res.render('users/register', { pageTitle: 'Register'} );
 };
 
+
 const registerPost = async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, 10); // second param is salt
 
@@ -25,6 +26,7 @@ const registerPost = async (req, res) => {
 const loginIndex = (req, res) => {
     res.render('users/login', { pageTitle: 'Login'} );
 };
+
 
 const loginPost = async (req, res) => {
     User.findOne({ email: req.body.email }, (error, data) => {
