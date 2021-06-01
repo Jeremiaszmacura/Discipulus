@@ -18,6 +18,11 @@ const UserSchema = new Schema({
         type: String,
         unique: true
     },
+    admin: {
+      type: Boolean,
+      required: true,
+      default: false
+    },
     ownedExams: [{
         type: Schema.Types.ObjectId,
         ref: 'Exam'

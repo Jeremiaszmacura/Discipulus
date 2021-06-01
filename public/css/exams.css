@@ -1,22 +1,3 @@
-.exams {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: 5%;
-    grid-row-gap: 20%;
-    padding: 2em;
-    overflow: visible;
-    align-items: flex-start;
-}
-
-.exam-body {
-    text-align: center;
-    border: 1px solid gray;
-    height: 15vh;
-    background: white;
-    border-radius: 0.5em;
-    overflow: hidden;
-}
-
 .create-exam {
     width: 100vw;
     height: 80vh;
@@ -84,3 +65,45 @@ form {
 .correct-answer {
     padding: 0.5em;
 }
+
+.dashboard-body {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-column-gap: 5%;
+    grid-row-gap: 5%;
+    padding: 3% 7%;
+    overflow: visible;
+    align-items: flex-start;
+}
+
+.dashboard-container {
+    text-align: center;
+    border: 2px solid gray;
+    height: auto;
+    background: white;
+    border-radius: 0.5em;
+    overflow: hidden;
+}
+
+.dashboard-title {
+    padding: 0.5em;
+    font-size: 1.8em;
+    font-family: 'Itim', cursive;
+}
+
+.dashboard-container-body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0.5em 2em;
+    font-size: 1.2em;
+    font-family: 'Itim', cursive;
+}
+
+.dashboard-exam {
+    border: 2px solid gray;
+    border-radius: 0.5em;
+    width: 80%;
+    margin: 1em auto;
+    padding: 0.5em 0;
+}
+

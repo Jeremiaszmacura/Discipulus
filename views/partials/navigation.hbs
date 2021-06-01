@@ -5,10 +5,16 @@
     </div>
     <ul>
         <li><a class="button" href="/">Home</a></li>
-        <li><a class="button" href="/exams">Exams</a></li>
+        {{#if isLogged}}
+            <li><a class="button" href="/exams">Exams</a></li>
+        {{/if}}
         <li><a class="button" href="/exams/create">Create Exam</a></li>
         <li><a class="button" href="/about" data-test-id="about">About</a></li>
         <li><a class="button" href="/dashboard">Dashboard</a></li>
-        <li><a class="button" href="/users/login">Login</a></li>
+        {{#if isLogged}}
+            <li><a class="button" href="/users/logout">Logout</a></li>
+        {{else}}
+            <li><a class="button" href="/users/login">Login</a></li>
+        {{/if}}
     </ul>
 </nav>

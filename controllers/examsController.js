@@ -1,3 +1,5 @@
+const randomstring = require("randomstring");
+
 const examModel = require('../models/exam');
 const User = require('../models/user');
 
@@ -10,7 +12,7 @@ const examIndex = (req, res) => {
         })
         .catch((err) => {
             console.log(err);
-            res.status(500).redirect('500', { pageTitle: 'About'} );
+            res.status(500).redirect('500', { pageTitle: '500'} );
         });
 };
 
@@ -25,7 +27,8 @@ const examDetails = (req, res) => {
 
     examModel.Exam.findById(id).lean()
         .then(result => {
-            res.render('exams/details', { exam: [result.name, result.time, result._id], questions: result.tasks, pageTitle: 'Exam Details' })
+            res.render('exams/details', { exam: [result.name, Math.floor(result.time / 60), result.time%60,
+                    result._id, result.code, result.description],questions: result.tasks, pageTitle: 'Exam Details' });
         })
         .catch((err) => {
             console.log(err);
@@ -35,13 +38,18 @@ const examDetails = (req, res) => {
 
 
 const examCreatePost = async (req, res) => {
+    // generating exam code
+    req.body.code = randomstring.generate(8);
+
     const exam = new examModel.Exam(req.body);
+
     // Adding new exams _id to User ownedExams list.
     await User.updateOne({ _id: res.locals.user._id }, { $push: { ownedExams: exam._id} });
 
     exam.save()
         .then((result) => {
-            res.render('exams/details', { exam: [result.name, result.time, result._id], pageTitle: 'Exam Details' });
+            res.render('exams/details', { exam: [result.name, Math.floor(result.time / 60), result.time%60,
+                    result._id, result.code, result.description], pageTitle: 'Exam Details' });
         })
         .catch((err) => {
             console.log(err);
@@ -77,7 +85,7 @@ const examDelete = async (req, res) => {
     // delete exam
     await examModel.Exam.findByIdAndDelete(id)
         .then(() => {
-            res.status(200).json({ redirect: '/exams' });
+            res.status(200).json({ redirect: '/exams/create' });
         })
         .catch(err => {
             console.log(err);
@@ -96,7 +104,8 @@ const questionCreatePost = async (req, res) => {
     .then(() => {
         examModel.Exam.findById(req.params.id).lean()
             .then((result2) => {
-                res.render('exams/details', { exam: [result2.name, result2.time, result2._id],
+                res.render('exams/details', { exam: [result2.name, Math.floor(result2.time / 60), result2.time%60,
+                        result2._id, result2.code, result2.description],
                     questions: result2.tasks, pageTitle: 'Exam Details' })
             })
     })

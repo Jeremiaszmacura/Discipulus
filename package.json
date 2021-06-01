@@ -21,6 +21,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.2",
     "nodemon": "^2.0.7",
+    "randomstring": "^1.2.1",
     "unique-string": "^2.0.0"
   },
   "devDependencies": {

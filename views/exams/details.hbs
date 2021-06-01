@@ -14,18 +14,19 @@
             </div>
             <div class="exam-details-field">
                 <p>Time:</p>
-                <p>{{lookup exam 1}}</p>
+                <p>{{lookup exam 1}}min {{lookup exam 2}}s</p>
             </div>
             <div class="exam-details-field">
                 <p>Description:</p>
-                <p>{{lookup exam 2}}</p>
+                <p>{{lookup exam 5}}</p>
             </div>
             <div class="exam-details-field">
                 <p>Exam Code:</p>
-                <p></p>
+                <p>{{lookup exam 4}}</p>
             </div>
         </div>
-        <a class="delete" data-doc="{{lookup exam 2}}">
+        <a class="delete" data-doc="{{lookup exam 3}}">
+            <p class="question-title">Delete exam</p>
             <img src="/img/trashcan.svg" alt="delete icon">
         </a>
     </div>
@@ -43,11 +44,12 @@
                     <p class="available-answer">d) {{questionAnswerD}}</p>
                     <p>correct answer: {{correctAnswer}}</p>
                     <a class="delete-question" data-doc="{{_id}}">
+                        <p class="question-title">Delete question</p>
                         <img src="/img/trashcan.svg" alt="delete icon">
                     </a>
                 </div>
             {{/each}}
         {{/if}}
     </div>
-    <p class="create-question"><a href="/exams/createQuestion/{{lookup exam 2}}">Create Question</a></p>
+    <p class="create-question"><a href="/exams/createQuestion/{{lookup exam 3}}">Create Question</a></p>
 </div>

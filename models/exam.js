@@ -29,6 +29,10 @@ const ExamSchema = new Schema({
         type: String,
         required: true,
     },
+    code: {
+        type: String,
+        required: true,
+    },
     tasks: [TaskSchema]
 }, { timestamps: true });
 
