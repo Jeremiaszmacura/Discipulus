@@ -1,6 +1,8 @@
 const checkIfLogged = async (req, res, next) => {
     res.locals.isLogged = req.cookies.authentication;
-    res.locals.isAdmin = req.cookies.adminRole;
+    if (typeof(req.cookies.adminRole) === 'string')
+        if (req.cookies.adminRole === 'true')
+            res.locals.isAdmin = req.cookies.adminRole;
     next();
 };
 

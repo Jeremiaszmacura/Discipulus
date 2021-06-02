@@ -10,6 +10,15 @@
         <div class="dashboard-container-body">
             <p>Email:</p>
             <p>{{{userEmail}}}</p>
+            {{#if isAdmin}}
+                <br>
+                <p>Role:</p>
+                <p>Admin</p>
+            {{else}}
+                <br>
+                <p>Role:</p>
+                <p>User</p>
+            {{/if}}
         </div>
     </div>
     <div class="dashboard-container">
