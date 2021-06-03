@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 
 const TaskSchema = new Schema({
-    idNumber: Number,
     question: {
         type: String,
         required: true
@@ -33,12 +32,17 @@ const ExamSchema = new Schema({
         type: String,
         required: true,
     },
-    tasks: [TaskSchema]
+    tasks: [TaskSchema],
+    solutions: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Solution'
+}]
 }, { timestamps: true });
 
 
 const Task = mongoose.model('Task', TaskSchema);
 const Exam = mongoose.model('Exam', ExamSchema);
+
 
 module.exports = {
     Exam,

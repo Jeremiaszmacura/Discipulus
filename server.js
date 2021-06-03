@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 
 const homeRoutes =  require('./routes/homeRoutes');
 const examsRoutes =  require('./routes/examsRoutes');
+const solutionsRoutes =  require('./routes/solutionsRoutes');
 const aboutRoutes =  require('./routes/aboutRoutes');
 const dashboardRoutes =  require('./routes/dashboardRoutes');
 const usersRoutes = require('./routes/usersRoutes');
@@ -35,6 +36,7 @@ app.use(cookieParser(credentials.cookieSecret)); // cookie
 app.use('/', homeRoutes);
 app.use('/users', usersRoutes);
 app.use('/exams', examsRoutes);
+app.use('/solutions', solutionsRoutes);
 app.use('/about', aboutRoutes);
 app.use('/dashboard', dashboardRoutes);
 app.use((req, res) => {
