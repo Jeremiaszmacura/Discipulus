@@ -1,14 +1,16 @@
+<!-- Heading -->
 ## Web application for online tests
 
-####Backend: Node js with express
+#### Backend: Node js with express
 
-####Frontend: monolithic application with server-site rendering using handlebars.
+#### Frontend: monolithic application with server-site rendering using handlebars.
 
-####Database: MongoDB (ODM - mongoose)
+#### Database: MongoDB (ODM - mongoose)
 
 <hr>
 
-####Used modules:
+#### Used modules:
+<!-- UL-->
 * bcrypt (encrypting passwords)
 * body-parser
 * cookie-parser
