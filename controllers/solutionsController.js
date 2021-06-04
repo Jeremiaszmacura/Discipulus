@@ -15,9 +15,14 @@ const personalInformationPost = async (req, res) => {
     // Adding new exams _id to User ownedExams list.
     await examModel.Exam.updateOne({ _id: id }, { $push: { solutions: solution._id} });
 
+    let exam = await examModel.Exam.findOne({ _id: id }).select({
+        "tasks.question": 1, "tasks.questionAnswerA": 1, "tasks.questionAnswerB": 1,
+        "tasks.questionAnswerC": 1, "tasks.questionAnswerD": 1
+    }).lean();
+
     solution.save()
-        .then((result) => {
-            res.render('exams/solveExam', { pageTitle: 'Exam Details' });
+        .then(() => {
+            res.render('exams/solveExam', { pageTitle: 'Exam Details', tasks: exam.tasks });
         })
         .catch((err) => {
             console.log(err);

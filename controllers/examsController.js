@@ -1,5 +1,4 @@
 const randomstring = require("randomstring");
-const mongoose = require('mongoose');
 
 const examModel = require('../models/exam');
 const solutionModel = require('../models/solution');
@@ -84,10 +83,10 @@ const examDelete = async (req, res) => {
         res.status(500).json({ redirect: '500' });
     });
 
+    // delete exam's solutions
     // await examModel.Exam.findById(id).then((result) => {
-    //     console.log(result.solutions);
     //     result.solutions.forEach( (element) => {
-    //         solutionModel.Solution.findByIdAndDelete({ _id: mongoose.Types.ObjectId(element)});
+    //         solutionModel.Solution.findByIdAndDelete(cast_element);
     //     });
     // }).catch(err => {
     //     console.log(err);

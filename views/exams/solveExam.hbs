@@ -1,0 +1,23 @@
+{{> navigation}}
+
+
+<link rel="stylesheet" href="/css/details.css">
+
+<div class="dashboard-body">
+    <div class="dashboard-container">
+        <p class="dashboard-title">Exam's Questions:</p>
+        {{#if tasks.length}}
+            {{#each tasks}}
+                <div class="dashboard-exam">
+                    <p class="question-title">Question:</p>
+                    <p>{{question}}</p>
+                    <p class="question-title">Available answers:</p>
+                    <p class="available-answer">a) {{questionAnswerA}}</p>
+                    <p class="available-answer">b) {{questionAnswerB}}</p>
+                    <p class="available-answer">c) {{questionAnswerC}}</p>
+                    <p class="available-answer">d) {{questionAnswerD}}</p>
+                </div>
+            {{/each}}
+        {{/if}}
+    </div>
+</div>
