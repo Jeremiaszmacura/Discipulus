@@ -1,6 +1,8 @@
 const randomstring = require("randomstring");
+const mongoose = require('mongoose');
 
 const examModel = require('../models/exam');
+const solutionModel = require('../models/solution');
 const User = require('../models/user');
 
 
@@ -53,7 +55,7 @@ const examCreatePost = async (req, res) => {
         })
         .catch((err) => {
             console.log(err);
-            res.status(500).redirect('500', { pageTitle: 'About'} );
+            res.status(500).redirect('500', { pageTitle: '500'} );
         });
 };
 
@@ -81,6 +83,16 @@ const examDelete = async (req, res) => {
         console.log(err);
         res.status(500).json({ redirect: '500' });
     });
+
+    // await examModel.Exam.findById(id).then((result) => {
+    //     console.log(result.solutions);
+    //     result.solutions.forEach( (element) => {
+    //         solutionModel.Solution.findByIdAndDelete({ _id: mongoose.Types.ObjectId(element)});
+    //     });
+    // }).catch(err => {
+    //     console.log(err);
+    //     res.status(500).json({ redirect: '500' });
+    // });
 
     // delete exam
     await examModel.Exam.findByIdAndDelete(id)
@@ -111,7 +123,7 @@ const questionCreatePost = async (req, res) => {
     })
     .catch((err) => {
         console.log(err);
-        res.status(500).redirect('500', { pageTitle: 'About'} );
+        res.status(500).redirect('500', { pageTitle: '500'} );
     });
 };
 

@@ -1,0 +1,15 @@
+{{> navigation}}
+
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/loginRegister.css">
+
+
+<div class="login-container">
+    <form class="login" action="/solutions/personalInformation/{{examId}}" method="POST">
+        <p class="title">Personal Data</p>
+        <h3>{{error}}</h3>
+        <input class="un" name="name" type="text" placeholder="name">
+        <input class="pass" name="surname" type="text" placeholder="surname">
+        <button class="login-button" type="submit">Start</button>
+    </form>
+</div>
