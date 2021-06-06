@@ -21,3 +21,10 @@
 * jest (unit tests)
 * portfinder (integration tests)
 * puppeteer (integration tests)
+
+<br />
+
+#### Few screens:
+![sending-msg-img](public/img/readme-home-screen.PNG)
+![sending-msg-img](public/img/readme-dashboard.PNG)
+![sending-msg-img](public/img/readme-details.PNG)

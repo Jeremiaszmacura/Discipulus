@@ -65,7 +65,7 @@ const examDelete = async (req, res) => {
 
     // checks if user who wants to delete exam is owner of this exam
     await User.findOne( { _id: res.locals.user._id } ).then((result) => {
-        if (!result.ownedExams.includes(id)) {
+        if (!result.ownedExams.includes(id) && result.admin === false) {
             isExamOwner = 0;
         }
     }).catch(err => {
