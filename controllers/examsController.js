@@ -1,7 +1,7 @@
 const randomstring = require("randomstring");
 
 const examModel = require('../models/exam');
-const solutionModel = require('../models/solution');
+// const solutionModel = require('../models/solution');
 const User = require('../models/user');
 
 
@@ -61,19 +61,9 @@ const examCreatePost = async (req, res) => {
 
 const examDelete = async (req, res) => {
     const id = req.params.id; // take id of exam from URL
-    let isExamOwner = 1; // flag to check if user is owner of exam
 
     // checks if user who wants to delete exam is owner of this exam
-    await User.findOne( { _id: res.locals.user._id } ).then((result) => {
-        if (!result.ownedExams.includes(id) && result.admin === false) {
-            isExamOwner = 0;
-        }
-    }).catch(err => {
-        console.log(err);
-        res.status(500).json({ redirect: '500' });
-    });
-
-    if (!isExamOwner) return res.status(200).json({ redirect: '/users/login' });
+    if (!res.locals.delPermission) return res.status(200).json({ redirect: '/users/login' });
 
     // delete exam id from user ownedExam list
     await examModel.Exam.findById(id).then((result) => {
@@ -129,7 +119,6 @@ const questionCreatePost = async (req, res) => {
 
 const questionDelete = async (req, res) => {
     const id = req.params.id; // take id of exam from URL
-    let isExamOwner = 1; // flag to check if user is owner of exam
 
     await examModel.Exam.find()
         .then((users) => users.forEach((exam) => {
@@ -141,16 +130,7 @@ const questionDelete = async (req, res) => {
         }));
 
     // checks if user who wants to delete exam is owner of this exam
-    await User.findOne( { _id: res.locals.user._id } ).then((result) => {
-        if (!result.ownedExams.includes(res.locals.exam_id)) {
-            isExamOwner = 0;
-        }
-    }).catch(err => {
-        console.log(err);
-        res.status(500).json({ redirect: '500' });
-    });
-
-    if (!isExamOwner) return res.status(200).json({ redirect: '/users/login' });
+    if (!res.locals.delPermission) return res.status(200).json({ redirect: '/users/login' });
 
     await examModel.Exam.updateOne( {_id: res.locals.exam_id}, { $pull: { tasks: { _id: req.params.id} } } )
         .then(() => {
