@@ -3,6 +3,8 @@ const express = require('express');
 const expressHandlebars = require('express-handlebars');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 
 const homeRoutes =  require('./routes/homeRoutes');
 const examsRoutes =  require('./routes/examsRoutes');
@@ -17,13 +19,31 @@ const app = express(); // create app
 
 const port = process.env.PORT || 3000;
 
+// Swagger
+const swaggerOptions = {
+    swaggerDefinition: {
+        info: {
+            title: "Discipulus API",
+            description: "API of web application for remote testing",
+            contact: {
+                name: "Jeremiasz Macura"
+            },
+            servers: ["http://localhost:3000"]
+        }
+    },
+    apis: ['./routes/*.js']
+};
 
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+
+// set view engine
 app.engine('hbs', expressHandlebars({
     defaultLayout: 'main',
     extname: 'hbs'
 }));
 app.set('view engine', 'hbs');
-
 
 
 app.use(express.static('public')); // browser gets access to files in public directory
