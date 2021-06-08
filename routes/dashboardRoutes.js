@@ -5,6 +5,16 @@ const authorization = require('../middleware/authorization');
 
 const router = express.Router();
 
+
+/**
+ * @swagger
+ * /dashboard':
+ *  get:
+ *    description: Use to render dashboard page
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ */
 router.get('/', [authentication.authenticateUser, authorization.checkIfLogged], dashboardController.dashboardIndex);
 
 
