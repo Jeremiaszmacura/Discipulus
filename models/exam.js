@@ -18,19 +18,19 @@ const TaskSchema = new Schema({
 const ExamSchema = new Schema({
     name: {
         type: String,
-        required: true,
+        required: true
     },
     time: {
         type: Number,
-        required: true,
+        required: true
     },
     description: {
         type: String,
-        required: true,
+        required: true
     },
     code: {
         type: String,
-        required: true,
+        required: true
     },
     tasks: [TaskSchema],
     solutions: [{

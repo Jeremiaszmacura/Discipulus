@@ -55,7 +55,7 @@ const logout = (req, res) => {
     res.clearCookie("authentication");
     res.clearCookie("adminRole");
     res.render('users/login', { pageTitle: 'Login', isLogged: false });
-}
+};
 
 
 module.exports = {

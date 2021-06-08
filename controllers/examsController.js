@@ -73,16 +73,6 @@ const examDelete = async (req, res) => {
         res.status(500).json({ redirect: '500' });
     });
 
-    // delete exam's solutions
-    // await examModel.Exam.findById(id).then((result) => {
-    //     result.solutions.forEach( (element) => {
-    //         solutionModel.Solution.findByIdAndDelete(cast_element);
-    //     });
-    // }).catch(err => {
-    //     console.log(err);
-    //     res.status(500).json({ redirect: '500' });
-    // });
-
     // delete exam
     await examModel.Exam.findByIdAndDelete(id)
         .then(() => {

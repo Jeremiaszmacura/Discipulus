@@ -15,7 +15,7 @@ const router = express.Router();
  *      '200':
  *        description: A successful response
  */
-router.get('/', authorization.checkIfLogged, examsController.examIndex)
+router.get('/', authorization.checkIfLogged, examsController.examIndex);
 
 /**
  * @swagger
@@ -70,7 +70,7 @@ router.post('/createQuestion/:id', authorization.checkIfLogged, examsController.
  *      '200':
  *        description: A successful response
  */
-router.delete('/question/:id', [authentication.authenticateUser, authorization.checkIfLogged], examsController.questionDelete)
+router.delete('/question/:id', [authentication.authenticateUser, authorization.checkIfLogged], examsController.questionDelete);
 
 /**
  * @swagger

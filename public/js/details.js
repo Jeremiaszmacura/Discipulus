@@ -1,5 +1,5 @@
 const trashcan = document.querySelector('a.delete');
-trashcan.addEventListener('click', (e) => {
+trashcan.addEventListener('click', () => {
     const endpoint = `/exams/${trashcan.dataset.doc}`;
     fetch(endpoint, {
         method: 'DELETE',
@@ -11,7 +11,7 @@ trashcan.addEventListener('click', (e) => {
 
 
 const trashcan_question = document.querySelector('a.delete-question');
-trashcan_question.addEventListener('click', (e) => {
+trashcan_question.addEventListener('click', () => {
     console.log('hi')
     const endpoint = `/exams/question/${trashcan_question.dataset.doc}`;
     fetch(endpoint, {
