@@ -14,7 +14,9 @@
 * bcrypt (encrypting passwords)
 * body-parser
 * cookie-parser
-* nodemon 
+* nodemon
+* swagger
+* swagger-ui-express
 * randomstring (generate test codes)
 * dotenv (store sensitive data)
 * eslint (code linting)
