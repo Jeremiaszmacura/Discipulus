@@ -4,6 +4,7 @@ const authorization = require('../middleware/authorization');
 
 const router = express.Router();
 
+
 /**
  * @swagger
  * /solutions/personalInformation/:id:
@@ -25,6 +26,17 @@ router.get('/personalInformation/:id', authorization.checkIfLogged, solutionsCon
  *        description: A successful response
  */
 router.post('/personalInformation/:id', authorization.checkIfLogged, solutionsController.personalInformationPost);
+
+/**
+ * @swagger
+ * /solutions/:id:
+ *  post:
+ *    description: Use to pass solution for the exam
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ */
+router.post('/:id', authorization.checkIfLogged, solutionsController.solutionPost);
 
 
 module.exports = router;
