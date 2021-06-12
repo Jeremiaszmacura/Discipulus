@@ -60,19 +60,9 @@ const examCreatePost = async (req, res) => {
 
 const examDelete = async (req, res) => {
     const id = req.params.id; // take id of exam from URL
-    let isExamOwner = 1; // flag to check if user is owner of exam
 
     // checks if user who wants to delete exam is owner of this exam
-    await User.findOne( { _id: res.locals.user._id } ).then((result) => {
-        if (!result.ownedExams.includes(id)) {
-            isExamOwner = 0;
-        }
-    }).catch(err => {
-        console.log(err);
-        res.status(500).json({ redirect: '500' });
-    });
-
-    if (!isExamOwner) return res.status(200).json({ redirect: '/users/login' });
+    if (!res.locals.delPermission) return res.status(200).json({ redirect: '/users/login' });
 
     // delete exam id from user ownedExam list
     await examModel.Exam.findById(id).then((result) => {
@@ -81,16 +71,6 @@ const examDelete = async (req, res) => {
         console.log(err);
         res.status(500).json({ redirect: '500' });
     });
-
-    // delete exam's solutions
-    // await examModel.Exam.findById(id).then((result) => {
-    //     result.solutions.forEach( (element) => {
-    //         solutionModel.Solution.findByIdAndDelete(cast_element);
-    //     });
-    // }).catch(err => {
-    //     console.log(err);
-    //     res.status(500).json({ redirect: '500' });
-    // });
 
     // delete exam
     await examModel.Exam.findByIdAndDelete(id)
@@ -128,7 +108,6 @@ const questionCreatePost = async (req, res) => {
 
 const questionDelete = async (req, res) => {
     const id = req.params.id; // take id of exam from URL
-    let isExamOwner = 1; // flag to check if user is owner of exam
 
     // finds exam which includes this question
     await examModel.Exam.find()
@@ -141,16 +120,7 @@ const questionDelete = async (req, res) => {
         }));
 
     // checks if user who wants to delete exam is owner of this exam
-    await User.findOne( { _id: res.locals.user._id } ).then((result) => {
-        if (!result.ownedExams.includes(res.locals.exam_id)) {
-            isExamOwner = 0;
-        }
-    }).catch(err => {
-        console.log(err);
-        res.status(500).json({ redirect: '500' });
-    });
-
-    if (!isExamOwner) return res.status(200).json({ redirect: '/users/login' });
+    if (!res.locals.delPermission) return res.status(200).json({ redirect: '/users/login' });
 
     await examModel.Exam.updateOne( {_id: res.locals.exam_id}, { $pull: { tasks: { _id: req.params.id} } } )
         .then(() => {
