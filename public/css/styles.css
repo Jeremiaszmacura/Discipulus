@@ -87,3 +87,26 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+
+.solutionResult-container {
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.solutionResult {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2em;
+    width: 25vw;
+    height: 20vh;
+    background: #FFFFFF 0 0 no-repeat padding-box;
+    border: 1px solid #707070;
+    border-radius: 32px;
+    font-size: 2em;
+    font-family: 'Itim', cursive;
+}

@@ -1,7 +1,6 @@
 const randomstring = require("randomstring");
 
 const examModel = require('../models/exam');
-const solutionModel = require('../models/solution');
 const User = require('../models/user');
 
 
@@ -131,8 +130,9 @@ const questionDelete = async (req, res) => {
     const id = req.params.id; // take id of exam from URL
     let isExamOwner = 1; // flag to check if user is owner of exam
 
+    // finds exam which includes this question
     await examModel.Exam.find()
-        .then((users) => users.forEach((exam) => {
+        .then((exams) => exams.forEach((exam) => {
             exam.tasks.forEach((task) => {
                 if(id === task.id) {
                     res.locals.exam_id = exam._id

@@ -1,9 +1,9 @@
 const express = require('express');
 const solutionsController = require('../controllers/solutionsController');
-const authentication = require('../middleware/authentication');
 const authorization = require('../middleware/authorization');
 
 const router = express.Router();
+
 
 /**
  * @swagger
@@ -26,6 +26,17 @@ router.get('/personalInformation/:id', authorization.checkIfLogged, solutionsCon
  *        description: A successful response
  */
 router.post('/personalInformation/:id', authorization.checkIfLogged, solutionsController.personalInformationPost);
+
+/**
+ * @swagger
+ * /solutions/:id:
+ *  post:
+ *    description: Use to pass solution for the exam
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ */
+router.post('/:id', authorization.checkIfLogged, solutionsController.solutionPost);
 
 
 module.exports = router;
