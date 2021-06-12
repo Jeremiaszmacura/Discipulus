@@ -70,7 +70,8 @@ router.post('/createQuestion/:id', authorization.checkIfLogged, examsController.
  *      '200':
  *        description: A successful response
  */
-router.delete('/question/:id', [authentication.authenticateUser, authorization.checkIfLogged], examsController.questionDelete);
+router.delete('/question/:id', [authentication.authenticateUser, authorization.isExamOwnerOrAdmin,
+    authorization.checkIfLogged], examsController.questionDelete);
 
 /**
  * @swagger
@@ -92,7 +93,8 @@ router.get('/:id', authorization.checkIfLogged, examsController.examDetails);
  *      '200':
  *        description: A successful response
  */
-router.delete('/:id', [authentication.authenticateUser, authorization.checkIfLogged], examsController.examDelete);
+router.delete('/:id', [authentication.authenticateUser, authorization.isExamOwnerOrAdmin,
+    authorization.checkIfLogged], examsController.examDelete);
 
 
 module.exports = router;
