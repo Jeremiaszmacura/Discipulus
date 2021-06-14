@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
+const mailer = require('../services/mailer');
 const uniqueString = require('unique-string');
 
 
@@ -15,7 +16,8 @@ const registerPost = async (req, res) => {
 
     user.save()
         .then(() => {
-            res.status(201).redirect('/users/login');
+            mailer(req.body.email); // send email to user about successful registration
+            res.render('users/login', { error: "Account has been created.", pageTitle: 'Login' });
         })
         .catch((err) => {
             console.log(err);

@@ -15,6 +15,7 @@
 * body-parser
 * cookie-parser
 * nodemon
+* nodemailer (sending emails after successful registration)
 * swagger
 * swagger-ui-express
 * randomstring (generate test codes)
