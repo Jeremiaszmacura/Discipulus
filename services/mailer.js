@@ -8,8 +8,8 @@ const sendRegisterMail = async (RegisterMail) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.EMAIL.toString(),
-            pass: process.env.PASSWORD.toString(),
+            user: process.env.EMAIL.toString(),  // eslint-disable-line
+            pass: process.env.PASSWORD.toString(),  // eslint-disable-line
         },
     });
 

@@ -17,7 +17,7 @@ const { credentials } = require('./config');
 
 const app = express(); // create app
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;  // eslint-disable-line
 
 // Swagger
 const swaggerOptions = {
@@ -69,7 +69,7 @@ app.use(function (err, req, res) {
 
 
 if(require.main === module) {
-    mongoose.connect(process.env.DATABASE_URL,
+    mongoose.connect(process.env.DATABASE_URL,  // eslint-disable-line
         { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
         .then(() => app.listen(port, () => console.log(`[SERVER] listening on port ${port}...`))) // after successful connection with database, sever start listening
         .catch((err) => console.log(err));

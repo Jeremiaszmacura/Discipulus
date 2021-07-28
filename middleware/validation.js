@@ -2,7 +2,7 @@ const { check, validationResult } = require('express-validator');
 
 const User = require('../models/user');
 
-
+// eslint-disable-next-line
 register_validation = [
 
     check('email')
@@ -17,7 +17,7 @@ register_validation = [
                     if(err) {
                         reject(new Error('Server Error'))
                     }
-                    if(Boolean(user)) {
+                    if(Boolean(user)) { // eslint-disable-line
                         reject(new Error('E-mail already in use'))
                     }
                     resolve(true)
@@ -56,5 +56,5 @@ register_validation = [
 
 
 module.exports = {
-    register_validation
+    register_validation  // eslint-disable-line
 };
